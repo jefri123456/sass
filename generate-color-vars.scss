@@ -1,6 +1,4 @@
 
-// “Be proud to be different. Standards were made by humans — and you’re one of them.”
-// PENYEMANGAT KU(CHAT GPT)
 @mixin generate-color-vars($colors) {
     @each $tema, $warna in $colors {
         @if $use-utility-color-levels {
