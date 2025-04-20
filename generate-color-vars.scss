@@ -1,0 +1,35 @@
+
+// “Be proud to be different. Standards were made by humans — and you’re one of them.”
+// PENYEMANGAT KU(CHAT GPT)
+@mixin generate-color-vars($colors) {
+    @each $tema, $warna in $colors {
+        @if $use-utility-color-levels {
+            @for $i from 1 through 9 {
+                $contrast: color_contrast($warna);
+                $level: calc($i * 100);
+                $weight: null;
+                $mix: null;
+    
+                @if $level <= 500 {
+                    $weight: calc((500 - $level) / 500 * 100%);
+                    $mix: #fff;
+                } @else {
+                    $weight: calc(($level - 500) / 500 * 100%);
+                    $mix: #000;
+                }
+    
+                $mixed: mix_color($warna, $mix, $weight);
+                $suffixKeyLevel: suffix_generator($level);
+    
+                #{$prefix + $tema + $suffixKeyLevel}: #{$mixed};
+                #{$prefix + $tema + $suffixKeyLevel}-rgb: get_rgb($mixed);
+            }
+        } @else {
+            #{$prefix + $tema}: #{$warna};
+            #{$prefix + $tema}-rgb: get_rgb($warna);
+        }
+
+    }
+
+}
+
